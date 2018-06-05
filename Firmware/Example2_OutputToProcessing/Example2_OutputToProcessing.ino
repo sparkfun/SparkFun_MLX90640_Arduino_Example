@@ -92,13 +92,11 @@ void loop()
 
   for (int x = 0 ; x < 768 ; x++)
   {
-    if(x % 8 == 0) Serial.println();
+    //if(x % 8 == 0) Serial.println();
     Serial.print(mlx90640To[x], 2);
     Serial.print(",");
   }
-
-  Serial.print("Read time: ");
-  Serial.println(stopTime - startTime);
+  Serial.println("");
 }
 
 //Returns true if the MLX90640 is detected on the I2C bus
