@@ -1,5 +1,5 @@
 /*
-  Output the temperature readings to all pixels to be read by a Processing visualizer
+  Read the MLX90640 temperature readings as quickly as possible
   By: Nathan Seidle
   SparkFun Electronics
   Date: May 22nd, 2018
@@ -9,10 +9,10 @@
   Feel like supporting open source hardware?
   Buy a board from SparkFun! https://www.sparkfun.com/products/14769
 
-  This example outputs 768 temperature values as fast as possible. Use this example
-  in conjunction with our Processing visualizer.
+  This example reads the MLX90640 and outputs 768 temperature values as fast as possible. 
+  Use this example in conjunction with our Processing visualizer.
 
-  This example will work with a Teensy 3.1 and above. The MLX90640 requires some
+  We use the Teensy 3.5 for this example. The MLX90640 requires some
   hefty calculations and larger arrays. You will need a microcontroller with 20,000
   bytes or more of RAM.
 
@@ -38,13 +38,18 @@ const byte MLX90640_address = 0x33; //Default 7-bit unshifted address of the MLX
 float mlx90640To[768];
 paramsMLX90640 mlx90640;
 
+const byte calcStart = 33; //Pin that goes high/low when calculations are complete
+//This makes the timing visible on the logic analyzer
+
 void setup()
 {
+  pinMode(calcStart, OUTPUT);
+
   Wire.begin();
   Wire.setClock(400000); //Increase I2C clock speed to 400kHz
 
   Serial.begin(115200); //Fast serial as possible
-  
+
   while (!Serial); //Wait for user to open terminal
   //Serial.println("MLX90640 IR Array Example");
 
@@ -67,9 +72,19 @@ void setup()
 
   //Once params are extracted, we can release eeMLX90640 array
 
-  //MLX90640_SetRefreshRate(MLX90640_address, 0x02); //Set rate to 2Hz
-  MLX90640_SetRefreshRate(MLX90640_address, 0x03); //Set rate to 4Hz
-  //MLX90640_SetRefreshRate(MLX90640_address, 0x07); //Set rate to 64Hz
+  //Set refresh rate
+  //A rate of 0.5Hz takes 4Sec per reading because we have to read two frames to get complete picture
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x00); //Set rate to 0.25Hz effective - Works
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x01); //Set rate to 0.5Hz effective - Works
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x02); //Set rate to 1Hz effective - Works
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x03); //Set rate to 2Hz effective - Works
+  MLX90640_SetRefreshRate(MLX90640_address, 0x04); //Set rate to 4Hz effective - Works
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x05); //Set rate to 8Hz effective - Works at 800kHz
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x06); //Set rate to 16Hz effective - Works at 800kHz
+  //MLX90640_SetRefreshRate(MLX90640_address, 0x07); //Set rate to 32Hz effective - fails
+
+  //Once EEPROM has been read at 400kHz we can increase to 1MHz
+  Wire.setClock(1000000); //Teensy will now run I2C at 800kHz (because of clock division)
 }
 
 void loop()
@@ -80,6 +95,7 @@ void loop()
     uint16_t mlx90640Frame[834];
     int status = MLX90640_GetFrameData(MLX90640_address, mlx90640Frame);
 
+    digitalWrite(calcStart, HIGH);
     float vdd = MLX90640_GetVdd(mlx90640Frame, &mlx90640);
     float Ta = MLX90640_GetTa(mlx90640Frame, &mlx90640);
 
@@ -87,8 +103,10 @@ void loop()
     float emissivity = 0.95;
 
     MLX90640_CalculateTo(mlx90640Frame, &mlx90640, emissivity, tr, mlx90640To);
+    digitalWrite(calcStart, LOW);
+    //Calculation time on a Teensy 3.5 is 71ms
   }
-  long stopTime = millis();
+  long stopReadTime = millis();
 
   for (int x = 0 ; x < 768 ; x++)
   {
@@ -97,6 +115,14 @@ void loop()
     Serial.print(",");
   }
   Serial.println("");
+  long stopPrintTime = millis();
+
+  Serial.print("Read rate: ");
+  Serial.print( 1000.0 / (stopReadTime - startTime), 2);
+  Serial.println(" Hz");
+  Serial.print("Read plus print rate: ");
+  Serial.print( 1000.0 / (stopPrintTime - startTime), 2);
+  Serial.println(" Hz");
 }
 
 //Returns true if the MLX90640 is detected on the I2C bus

@@ -49,7 +49,7 @@ void setup()
 
   if (isConnected() == false)
   {
-    Serial.println("MLX90640 not detected at default I2C addres. Please check wiring. Freezing.");
+    Serial.println("MLX90640 not detected at default I2C address. Please check wiring. Freezing.");
     while (1);
   }
   Serial.println("MLX90640 online!");
