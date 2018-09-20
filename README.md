@@ -23,7 +23,7 @@ The MLX90640 occupies a very interesting spot in the thermal imaging space. It i
 **Not Uno Compatible:** The MLX90640 requires complex calculations by the host platform. A regular Uno doesn't have enough RAM or flash to complete the complex computations required to turn the raw pixel data into temperature data. You will need a microcontroller with 20,000 bytes or more of RAM. We recommend a Teensy 3.1 or above.
 
 SparkFun labored with love to create this code. Feel like supporting open source hardware? 
-Buy a [breakout board](https://www.sparkfun.com/products/14769) from SparkFun!
+Buy the Melexis MLX90640 breakout board ([110&deg;](https://www.sparkfun.com/products/14843) and [55&deg;](https://www.sparkfun.com/products/14844) FOV) from SparkFun!
 
 Repository Contents
 -------------------
