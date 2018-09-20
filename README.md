@@ -1,11 +1,20 @@
 SparkFun MLX90640 Arduino Example
 ========================================
 
-![SparkFun Qwiic IR Array - MLX90640](https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png)
-
-[*SparkX Qwiic IR Array - MLX90640 (SPX-14769)*](https://www.sparkfun.com/products/14769)
+<table class="table table-hover table-striped table-bordered">
+  <tr align="center">
+   <td><a href="https://www.sparkfun.com/products/14843"><img src="https://cdn.sparkfun.com/r/500-500/assets/parts/1/3/1/1/3/14843-SparkFun_IR_Array_Breakout_-_110_Degree_FOV__MLX90640__Qwiic_-01.jpg" alt="Qwiic IR Array (MLX90640-110x75 FOV)"></a></td>
+   <td><a href="https://www.sparkfun.com/products/14844"><img src="https://cdn.sparkfun.com/r/500-500/assets/parts/1/3/1/1/4/14844-SparkFun_IR_Array_Breakout_-_55_Degree_FOV__MLX90640__Qwiic_-01.jpg" alt="Qwiic IR Array (MLX90640-55x35 FOV)"></a></td>
+  </tr>
+  <tr align="center">
+    <td>Qwiic IR Array (MLX90640-110x75 FOV) [<a href="https://www.sparkfun.com/products/14843">SEN-14843</a>]</td>
+    <td>Qwiic IR Array (MLX90640-55x35 FOV) [<a href="https://www.sparkfun.com/products/14844">SEN-14844</a>]</td>
+  </tr>
+</table>
 
 This repo contains Arduino sketches that show how to output temperature data from the MLX90640 sensor. We've also included a Processing app in Example 2 to read in the values over the serial port and visualize them.
+
+![SparkFun Qwiic IR Array - MLX90640](https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png)
 
 The MLX90640 contains a 32x28 array of thermopile sensors creating, in essence, a low resolution thermal imaging camera. As the images show you can detect surface temperatures from many feet away with an accuracy of ±1.5°C (best case). We’ve packaged the MLX90640 on an easy to use Qwiic board with mounting holes and a smattering of decoupling caps. We’ve written an example Arduino sketch and Processing app to get started with the sensor quickly!
 
@@ -21,6 +30,20 @@ Repository Contents
 
 * **/Documents** - Datasheets
 * **/Firmware** - Contains the sketches that Processing app to implement the visualizer
+
+Documentation
+--------------
+* **[Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-ir-array-mlx90640-hookup-guide)** - Basic hookup guide for the Qwiic IR Array.
+* Product Repos
+  * **[Qwiic IR Array (MLX90640-110x75 FOV)](https://github.com/sparkfun/Qwiic_IR_Array_MLX90640_110)**
+  * **[Qwiic IR Array (MLX90640-55x35 FOV)](https://github.com/sparkfun/Qwiic_IR_Array_MLX90640_55)**
+
+Products that use this Library
+----------------
+* [SEN-14843](https://www.sparkfun.com/products/14843)- SparkFun red version w/ 110&deg; FOV
+* [SPX-14768](https://www.sparkfun.com/products/14768)- SparkX version w/ 110&deg; FOV
+* [SEN-14844](https://www.sparkfun.com/products/14844)- SparkFun red version w/ 55&deg; FOV
+* [SPX-14769](https://www.sparkfun.com/products/14769)- SparkX version w/ 55&deg; FOV
 
 License Information
 -------------------
