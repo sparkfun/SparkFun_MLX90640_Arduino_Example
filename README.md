@@ -14,7 +14,7 @@ SparkFun MLX90640 Arduino Example
 
 This repo contains Arduino sketches that show how to output temperature data from the MLX90640 sensor. We've also included a Processing app in Example 2 to read in the values over the serial port and visualize them.
 
-![SparkFun Qwiic IR Array - MLX90640](https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png)
+<center><a href="https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png"><img src="https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png" alt="SparkFun Qwiic IR Array - MLX90640"></a></center>
 
 The MLX90640 contains a 32x28 array of thermopile sensors creating, in essence, a low resolution thermal imaging camera. As the images show you can detect surface temperatures from many feet away with an accuracy of ±1.5°C (best case). We’ve packaged the MLX90640 on an easy to use Qwiic board with mounting holes and a smattering of decoupling caps. We’ve written an example Arduino sketch and Processing app to get started with the sensor quickly!
 
