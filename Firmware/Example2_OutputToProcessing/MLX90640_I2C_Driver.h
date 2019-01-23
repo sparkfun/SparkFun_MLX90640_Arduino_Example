@@ -32,10 +32,8 @@
 #define I2C_BUFFER_LENGTH SERIAL_BUFFER_SIZE
 
 #elif __MK20DX256__
-//Teensy
-
-#elif ARDUINO_ARCH_ESP32
-//ESP32 based platforms
+//Teensy 3.2
+#define I2C_BUFFER_LENGTH 32
 
 #else
 

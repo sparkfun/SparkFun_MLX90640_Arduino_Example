@@ -31,12 +31,9 @@
 //SAMD21 uses RingBuffer.h
 #define I2C_BUFFER_LENGTH SERIAL_BUFFER_SIZE
 
-//#elif __MK62FX512__
-//Teensy 3.5
-//#define I2C_BUFFER_LENGTH 128
-
-#elif ARDUINO_ARCH_ESP32
-//ESP32 based platforms
+#elif __MK20DX256__
+//Teensy 3.2
+#define I2C_BUFFER_LENGTH 32
 
 #else
 
