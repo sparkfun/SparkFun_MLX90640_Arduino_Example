@@ -103,6 +103,10 @@ void draw() {
     
   }  
   
+  // Uncomment out the following two lines to enable static min and max temperatures
+  // maxTemp = 10;
+  // minTemp = 45;
+
   // for each of the 768 values, map the temperatures between min and max
   // to the blue through red portion of the color space
   for(int q = 0; q < 768; q++){
