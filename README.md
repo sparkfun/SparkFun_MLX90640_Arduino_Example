@@ -19,7 +19,7 @@ This repo contains Arduino sketches that show how to output temperature data fro
   <a href="https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png"><img src="https://cdn.sparkfun.com//assets/parts/1/3/0/1/5/SparkFun-MLX90640-Waving.png" alt="SparkFun Qwiic IR Array - MLX90640"></a>
 </p>
 
-The MLX90640 contains a 32x28 array of thermopile sensors creating, in essence, a low resolution thermal imaging camera. As the images show you can detect surface temperatures from many feet away with an accuracy of ±1.5°C (best case). We’ve packaged the MLX90640 on an easy to use Qwiic board with mounting holes and a smattering of decoupling caps. We’ve written an example Arduino sketch and Processing app to get started with the sensor quickly!
+The MLX90640 contains a 32x24 array of thermopile sensors creating, in essence, a low resolution thermal imaging camera. As the images show you can detect surface temperatures from many feet away with an accuracy of ±1.5°C (best case). We’ve packaged the MLX90640 on an easy to use Qwiic board with mounting holes and a smattering of decoupling caps. We’ve written an example Arduino sketch and Processing app to get started with the sensor quickly!
 
 The MLX90640 occupies a very interesting spot in the thermal imaging space. It is much higher resolution than the Panasonic Grid-EYE and much lower cost than the FLiR Lepton cameras. A very exciting advancement!
 
