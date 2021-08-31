@@ -53,7 +53,7 @@ int MLX90640_I2CRead(uint8_t _deviceAddress, unsigned int startAddress, unsigned
     uint16_t numberOfBytesToRead = bytesRemaining;
     if (numberOfBytesToRead > I2C_BUFFER_LENGTH) numberOfBytesToRead = I2C_BUFFER_LENGTH;
 
-    Wire.requestFrom((uint8_t)_deviceAddress, numberOfBytesToRead);
+    Wire.requestFrom((uint8_t)_deviceAddress, (uint8_t)numberOfBytesToRead);
     if (Wire.available())
     {
       for (uint16_t x = 0 ; x < numberOfBytesToRead / 2; x++)
@@ -106,4 +106,40 @@ int MLX90640_I2CWrite(uint8_t _deviceAddress, unsigned int writeAddress, uint16_
   }
 
   return (0); //Success
+}
+
+int MLX90640_I2CGeneralReset(void)
+{
+  //int ack;
+  //char cmd[2] = {0, 0};
+  //cmd[0] = 0x00;
+  //cmd[1] = 0x06;
+
+  Wire.endTransmission(); //i2c.stop();
+  delayMicroseconds(5);
+
+  //ack = i2c.write(cmd[0], &cmd[1], 1, 0);
+  //ack = i2c.write(sa, cmd, 4, 0);
+  //cmd[0] is slave adr 0x00 or a general call
+  //cmd[1] is the command to send, 0x06
+  //1 is byte len
+
+  Wire.beginTransmission((uint8_t)0x00);
+  Wire.write(0x06);
+  
+  if (Wire.endTransmission() != 0)
+  {
+    //Sensor did not ACK
+    Serial.println("Error: Sensor did not ack");
+    return (-1);
+  }
+//  if (ack != 0x00)
+//  {
+//    return -1;
+//  }
+  Wire.endTransmission(); //i2c.stop();
+
+  delayMicroseconds(50);
+
+  return 0;
 }
