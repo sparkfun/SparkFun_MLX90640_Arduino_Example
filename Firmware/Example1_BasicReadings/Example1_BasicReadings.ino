@@ -40,12 +40,12 @@ paramsMLX90640 mlx90640;
 
 void setup()
 {
-  Wire.begin();
-  Wire.setClock(400000); //Increase I2C clock speed to 400kHz
-
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial); //Wait for user to open terminal
   Serial.println("MLX90640 IR Array Example");
+
+  Wire.begin();
+  Wire.setClock(400000); //Increase I2C clock speed to 400kHz
 
   if (isConnected() == false)
   {
@@ -110,4 +110,3 @@ boolean isConnected()
     return (false); //Sensor did not ACK
   return (true);
 }
-
